@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BibliotecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Categoria" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Libros" Relationship="Self.FK_Libro_Categorias" FromRole="Categorias" ToRole="Libros" />
+  </EntityType>
+  <EntityType Name="Idiomas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idioma" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Libros" Relationship="Self.FK_Libro_Idiomas" FromRole="Idiomas" ToRole="Libros" />
+  </EntityType>
+  <EntityType Name="Libros">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Resumen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Autor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lanzamiento" Type="DateTime" Precision="0" />
+    <Property Name="Idioma" Type="Int32" Nullable="false" />
+    <Property Name="Paginas" Type="Int32" />
+    <Property Name="Categoria" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categorias" Relationship="Self.FK_Libro_Categorias" FromRole="Libros" ToRole="Categorias" />
+    <NavigationProperty Name="Idiomas" Relationship="Self.FK_Libro_Idiomas" FromRole="Libros" ToRole="Idiomas" />
+  </EntityType>
+  <Association Name="FK_Libro_Categorias">
+    <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
+    <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Libros">
+        <PropertyRef Name="Categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Libro_Idiomas">
+    <End Role="Idiomas" Type="Self.Idiomas" Multiplicity="1" />
+    <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idiomas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Libros">
+        <PropertyRef Name="Idioma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BibliotecaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+    <EntitySet Name="Idiomas" EntityType="Self.Idiomas" />
+    <EntitySet Name="Libros" EntityType="Self.Libros" />
+    <AssociationSet Name="FK_Libro_Categorias" Association="Self.FK_Libro_Categorias">
+      <End Role="Categorias" EntitySet="Categorias" />
+      <End Role="Libros" EntitySet="Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Libro_Idiomas" Association="Self.FK_Libro_Idiomas">
+      <End Role="Idiomas" EntitySet="Idiomas" />
+      <End Role="Libros" EntitySet="Libros" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

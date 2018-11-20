@@ -1,0 +1,82 @@
+﻿@model Biblioteca.Models.Libros
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Libros</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resumen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resumen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editorial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editorial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lanzamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lanzamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paginas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paginas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorias.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorias.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idiomas.Idioma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idiomas.Idioma)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>
